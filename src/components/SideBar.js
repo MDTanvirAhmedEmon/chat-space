@@ -3,7 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import SingleUserItem from "./SingleUserItem";
 
 
-const UserList = () => {
+const SideBar = () => {
     return (
             <div className="">
                 <div>
@@ -38,4 +38,4 @@ const UserList = () => {
     );
 };
 
-export default UserList;
+export default SideBar;

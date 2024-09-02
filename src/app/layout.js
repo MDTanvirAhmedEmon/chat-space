@@ -11,9 +11,7 @@ export default function RootLayout({
         <StyleProvider hashPriority="high">
 
             <html lang="en">
-
-                {children}
-
+                <body>{children}</body>
             </html>
 
         </StyleProvider>

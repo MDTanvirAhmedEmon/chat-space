@@ -1,11 +1,11 @@
 
-const DynamicUser = () => {
+const chatBox = () => {
     return (
         <div>
-            
+
         </div>
     );
 };
 
-export default DynamicUser;
+export default chatBox;
 

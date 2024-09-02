@@ -1,4 +1,4 @@
-import UserList from "@/components/UserList"
+import SideBar from "@/components/SideBar";
 
 
 
@@ -7,10 +7,10 @@ export default function Main({ children }) {
 
     <div className="container mx-auto">
       <div className="flex">
-        <div className="bg-slate-100 w-[20%] h-screen p-4">
-          <UserList />
+        <div className="bg-[#2424240a] shadow w-[20%] h-screen p-4">
+          <SideBar />
         </div>
-        <div className="bg-green-300 w-[80%]">
+        <div className=" bg-[#24242404] w-[80%]">
           {children}
         </div>
       </div>
