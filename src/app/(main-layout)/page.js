@@ -1,11 +1,11 @@
 
-
-const Home = () => {
+const DynamicUser = () => {
     return (
         <div>
-            This Is Home
+            
         </div>
     );
 };
 
-export default Home;
+export default DynamicUser;
+
