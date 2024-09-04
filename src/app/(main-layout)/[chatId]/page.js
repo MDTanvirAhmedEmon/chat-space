@@ -11,10 +11,9 @@ const DynamicUserItem = ({ params }) => {
 
     const [text, setText] = useState();
     const [allReceivedMessage, setAllReceivedMessage] = useState([]);
+    const [realTimeMessage, setRealTimeMessage] = useState([]);
     console.log('from socket', allReceivedMessage)
-    console.log(text)
-
-    const myId = 11;
+    // const myId = 11;
     const socket = io('http://localhost:5000');
     // const socket = useMemo(() =>io('http://localhost:5000'),[]);
 
@@ -33,14 +32,17 @@ const DynamicUserItem = ({ params }) => {
         });
 
 
-        // Clean up the socket connection when the component unmounts
         return () => {
             socket.disconnect();
         };
     }, [socket]);
 
 
-
+    useEffect(() => {
+        fetch(`http://localhost:5000/conversation/${user?._id}/${chatId}`)
+        .then(res => res.json())
+        .then(data =>  setAllReceivedMessage(data))
+    }, [])
 
 
     const sendMessage = () => {
@@ -51,7 +53,7 @@ const DynamicUserItem = ({ params }) => {
 
     return (
         <div className=' h-full relative'>
-            <div className=" pt-10 px-10">
+            <div className=" pt-10 px-10 h-[90vh] overflow-hidden overflow-y-scroll">
 
 
                 <div className=" flex flex-col">

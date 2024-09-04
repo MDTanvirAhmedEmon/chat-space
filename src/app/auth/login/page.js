@@ -1,5 +1,6 @@
 "use client";
 import { Form, Input, message } from "antd";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Registration = () => {
@@ -18,7 +19,7 @@ const Registration = () => {
 
             if (result.success) {
                 console.log('Success:', result);
-                localStorage.setItem('user',JSON.stringify(result?.data));
+                localStorage.setItem('user', JSON.stringify(result?.data));
                 router.push(`/`)
                 message.success("Log In Successfull");
             } else {
@@ -87,6 +88,9 @@ const Registration = () => {
                             Log In
                         </button>
                     </Form.Item>
+                    <div className="flex gap-2">
+                        <p className=" text-[#d4d4d4]">Did Not Have Any Account?</p> <Link href={`/auth`}><p className=" text-[#ffffff]  mr-2">Register</p></Link>
+                    </div>
                 </Form>
             </div>
         </div>
