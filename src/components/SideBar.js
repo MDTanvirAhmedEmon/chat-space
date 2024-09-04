@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 
 const SideBar = () => {
     const [users, setUsers] = useState(null);
+    const [selectedUserId, setSelectedUserId] = useState(null);
     console.log(users)
 
-    const user =JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         if (user && user._id) {
@@ -23,7 +24,7 @@ const SideBar = () => {
     return (
         <div className="">
             <div>
-                <p className=" text-3xl font-bold mb-4">Chat Space</p>
+                <p className=" text-3xl font-bold mb-4">{user?.name}</p>
                 <ConfigProvider
                     theme={{
                         components: {
@@ -42,7 +43,12 @@ const SideBar = () => {
             {/* user Item */}
             <div className=" mt-8">
                 {
-                    users?.map(user => <SingleUserItem key={user._id} user={user}></SingleUserItem>)
+                    users?.map(user => <SingleUserItem
+                        key={user._id}
+                        isSelected={selectedUserId === user._id}
+                        onClick={() => setSelectedUserId(user._id)}
+                        user={user}
+                    ></SingleUserItem>)
                 }
 
             </div>
