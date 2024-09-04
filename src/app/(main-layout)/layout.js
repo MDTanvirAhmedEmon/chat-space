@@ -1,8 +1,19 @@
+"use client";
 import SideBar from "@/components/SideBar";
-
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 
 export default function Main({ children }) {
+  const router = useRouter();
+  const user = localStorage.getItem('user');
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/auth/login')
+    }
+  }, [user]);
+
   return (
 
     <div className="container mx-auto">
