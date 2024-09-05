@@ -10,7 +10,7 @@ const DynamicUserItem = ({ params }) => {
     const user = JSON.parse(localStorage.getItem('user'))
 
     const [text, setText] = useState();
-    const [ singleUser ,setSingleUser ] = useState(null);
+    const [singleUser, setSingleUser] = useState(null);
     const [allReceivedMessage, setAllReceivedMessage] = useState([]);
     const [realTimeMessage, setRealTimeMessage] = useState([]);
     console.log('from socket', allReceivedMessage)
@@ -27,7 +27,7 @@ const DynamicUserItem = ({ params }) => {
             socket.emit('register', user?._id);
         });
 
-        socket.on('receiverMessage', (newMessage) => {
+        socket.on(`receiverMessage:${user?._id}`, (newMessage) => {
             console.log(newMessage)
             setAllReceivedMessage((prevMessages) => [...prevMessages, newMessage]);
         });
@@ -67,7 +67,7 @@ const DynamicUserItem = ({ params }) => {
                     <p className=" text-sm">Last Seen 1h</p>
                 </div>
             </div>
-            <div className=" pt-4 md:pt-10 pb-5 px-10  h-[83vh] md:h-[81vh] overflow-hidden overflow-y-scroll">
+            <div className=" pt-4 md:pt-4 pb-5 px-10  h-[83vh] md:h-[81vh] overflow-hidden overflow-y-scroll">
 
 
                 <div className=" flex flex-col">

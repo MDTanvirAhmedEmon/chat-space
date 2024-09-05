@@ -1,5 +1,6 @@
 "use client";
 import { Form, Input, message } from "antd";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Registration = () => {
@@ -39,7 +40,7 @@ const Registration = () => {
 
     return (
         <div className="h-screen w-full flex justify-center items-center">
-            <div className="w-[600px] bg-primary px-6 py-10 rounded-2xl shadow-2xl">
+            <div className=" mx-2 px-4 w-[300px] md:w-[600px] bg-primary md:px-6 py-10 rounded-2xl shadow-2xl">
                 <Form
                     className="w-full"
                     layout="vertical"
@@ -61,7 +62,7 @@ const Registration = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Your Name" />
                     </Form.Item>
                     <Form.Item
                         label={<p className="text-white">Email</p>}
@@ -73,7 +74,7 @@ const Registration = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Your Email" />
                     </Form.Item>
 
                     <Form.Item
@@ -86,7 +87,7 @@ const Registration = () => {
                             },
                         ]}
                     >
-                        <Input.Password />
+                        <Input.Password placeholder="Enter Password" />
                     </Form.Item>
 
                     <Form.Item
@@ -99,6 +100,9 @@ const Registration = () => {
                             Register
                         </button>
                     </Form.Item>
+                    <div className="flex gap-2">
+                        <p className=" text-[#d4d4d4]">Already Have An Account?</p> <Link href={`/auth/login`}><p className=" text-[#ffffff]  mr-2">Log In</p></Link>
+                    </div>
                 </Form>
             </div>
         </div>

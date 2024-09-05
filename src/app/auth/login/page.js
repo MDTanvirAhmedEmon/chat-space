@@ -40,7 +40,7 @@ const Registration = () => {
 
     return (
         <div className="h-screen w-full flex justify-center items-center">
-            <div className="w-[600px] bg-primary px-6 py-10 rounded-2xl shadow-2xl">
+            <div className=" mx-2 px-4  w-[300px] md:w-[600px] bg-primary md:px-6 py-10 rounded-2xl shadow-2xl">
                 <Form
                     className="w-full"
                     layout="vertical"
@@ -62,7 +62,7 @@ const Registration = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="Your Email" />
                     </Form.Item>
 
                     <Form.Item
@@ -75,7 +75,7 @@ const Registration = () => {
                             },
                         ]}
                     >
-                        <Input.Password />
+                        <Input.Password placeholder="Enter Passwrod" />
                     </Form.Item>
 
                     <Form.Item
@@ -89,7 +89,7 @@ const Registration = () => {
                         </button>
                     </Form.Item>
                     <div className="flex gap-2">
-                        <p className=" text-[#d4d4d4]">Did Not Have Any Account?</p> <Link href={`/auth`}><p className=" text-[#ffffff]  mr-2">Register</p></Link>
+                        <p className=" text-[#d4d4d4]">Don't Have Any Account?</p> <Link href={`/auth`}><p className=" text-[#ffffff]  mr-2">Register</p></Link>
                     </div>
                 </Form>
             </div>
