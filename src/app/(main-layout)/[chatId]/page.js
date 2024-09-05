@@ -40,8 +40,8 @@ const DynamicUserItem = ({ params }) => {
 
     useEffect(() => {
         fetch(`http://localhost:5000/conversation/${user?._id}/${chatId}`)
-        .then(res => res.json())
-        .then(data =>  setAllReceivedMessage(data))
+            .then(res => res.json())
+            .then(data => setAllReceivedMessage(data))
     }, [])
 
 
@@ -52,8 +52,8 @@ const DynamicUserItem = ({ params }) => {
     }
 
     return (
-        <div className=' h-full relative'>
-            <div className=" pt-10 px-10 h-[90vh] overflow-hidden overflow-y-scroll">
+        <div className=' h-screen relative'>
+            <div className=" pt-4 md:pt-10 pb-5 px-10  h-[88vh] md:h-[88vh] overflow-hidden overflow-y-scroll">
 
 
                 <div className=" flex flex-col">
@@ -73,9 +73,9 @@ const DynamicUserItem = ({ params }) => {
 
             </div>
 
-            <div className=" absolute bottom-0 flex w-full justify-center mb-4">
+            <div className="absolute bottom-5 flex w-full justify-center md:mb-4">
 
-                <input onChange={(e) => setText(e.target.value)} className=" border shadow-lg active:shadow-lg focus:shadow-lg active:ring-none px-4 rounded-xl w-[300px] lg:w-[500px] xl:w-[700px]" size="large" placeholder="Type Message Here..." />
+                <input onChange={(e) => setText(e.target.value)} className=" border shadow-lg active:shadow-lg focus:shadow-lg active:ring-none px-4 rounded-xl w-[250px] md:w-[300px] lg:w-[500px] xl:w-[700px]" size="large" placeholder="Type Message Here..." />
                 <IoIosSend onClick={sendMessage} className=" w-12 h-12 text-primary cursor-pointer" />
             </div>
         </div>

@@ -3,9 +3,10 @@ import { ConfigProvider, Input } from "antd";
 import { CiSearch } from "react-icons/ci";
 import SingleUserItem from "./SingleUserItem";
 import { useEffect, useState } from "react";
+import MobileSingleUserItem from "./MobileSingleUserItem";
 
 
-const SideBar = () => {
+const MobileSideBar = ({setShow, show}) => {
     const [users, setUsers] = useState(null);
     const [selectedUserId, setSelectedUserId] = useState(null);
     console.log(users)
@@ -43,12 +44,14 @@ const SideBar = () => {
             {/* user Item */}
             <div className=" mt-8">
                 {
-                    users?.map(user => <SingleUserItem
+                    users?.map(user => <MobileSingleUserItem
+                        setShow={setShow}
+                        show={show}
                         key={user._id}
                         isSelected={selectedUserId === user._id}
                         onClick={() => setSelectedUserId(user._id)}
                         user={user}
-                    ></SingleUserItem>)
+                    ></MobileSingleUserItem>)
                 }
 
             </div>
@@ -61,4 +64,4 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;
+export default MobileSideBar;
