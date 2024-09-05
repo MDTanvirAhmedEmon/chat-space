@@ -7,7 +7,7 @@ const Registration = () => {
     const router = useRouter();
     const onFinish = async (values) => {
         try {
-            const response = await fetch('https://chat-space-simple-server.vercel.app/auth/login', {
+            const response = await fetch('http://localhost:5000/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

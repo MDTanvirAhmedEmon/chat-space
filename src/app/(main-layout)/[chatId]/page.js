@@ -15,7 +15,7 @@ const DynamicUserItem = ({ params }) => {
     const [realTimeMessage, setRealTimeMessage] = useState([]);
     console.log('from socket', allReceivedMessage)
     // const myId = 11;
-    const socket = io('https://chat-space-simple-server.vercel.app');
+    const socket = io('http://localhost:5000');
     // const socket = useMemo(() =>io('http://localhost:5000'),[]);
 
 
@@ -40,13 +40,13 @@ const DynamicUserItem = ({ params }) => {
 
 
     useEffect(() => {
-        fetch(`https://chat-space-simple-server.vercel.app/${user?._id}/${chatId}`)
+        fetch(`http://localhost:5000/conversation/${user?._id}/${chatId}`)
             .then(res => res.json())
             .then(data => setAllReceivedMessage(data))
     }, [])
 
     useEffect(() => {
-        fetch(`https://chat-space-simple-server.vercel.app/${chatId}`)
+        fetch(`http://localhost:5000/single-user/${chatId}`)
             .then(res => res.json())
             .then(data => setSingleUser(data?.data))
     }, [])
