@@ -1,5 +1,5 @@
 "use client"
-import { ConfigProvider, Input, message } from "antd";
+import { Avatar, ConfigProvider, Input, message } from "antd";
 import io from 'socket.io-client';
 import { IoIosSend } from "react-icons/io";
 import { useEffect, useMemo, useState } from "react";
@@ -10,6 +10,7 @@ const DynamicUserItem = ({ params }) => {
     const user = JSON.parse(localStorage.getItem('user'))
 
     const [text, setText] = useState();
+    const [ singleUser ,setSingleUser ] = useState(null);
     const [allReceivedMessage, setAllReceivedMessage] = useState([]);
     const [realTimeMessage, setRealTimeMessage] = useState([]);
     console.log('from socket', allReceivedMessage)
@@ -44,6 +45,12 @@ const DynamicUserItem = ({ params }) => {
             .then(data => setAllReceivedMessage(data))
     }, [])
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/single-user/${chatId}`)
+            .then(res => res.json())
+            .then(data => setSingleUser(data?.data))
+    }, [])
+
 
     const sendMessage = () => {
         const myMessage = { senderId: user?._id, receiverId: chatId, text }
@@ -53,7 +60,14 @@ const DynamicUserItem = ({ params }) => {
 
     return (
         <div className=' h-screen relative'>
-            <div className=" pt-4 md:pt-10 pb-5 px-10  h-[88vh] md:h-[88vh] overflow-hidden overflow-y-scroll">
+            <div className=" h-16 md:h-[70px] border-b bg-[#24242404] flex items-center pl-3 gap-3">
+                <Avatar size={50} className="w-16 h-16" src="https://imgcdn.stablediffusionweb.com/2024/5/2/81328692-c85f-4e08-9c01-f8f9f49fb291.jpg" />
+                <div>
+                    <p className=" font-bold capitalize">{singleUser?.name}</p>
+                    <p className=" text-sm">Last Seen 1h</p>
+                </div>
+            </div>
+            <div className=" pt-4 md:pt-10 pb-5 px-10  h-[83vh] md:h-[81vh] overflow-hidden overflow-y-scroll">
 
 
                 <div className=" flex flex-col">
