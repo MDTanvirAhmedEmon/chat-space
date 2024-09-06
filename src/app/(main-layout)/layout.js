@@ -1,6 +1,5 @@
 "use client";
 
-import MobileSideBar from "@/components/MobileSideBar";
 import SideBar from "@/components/SideBar";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,15 +7,21 @@ import { useEffect, useState } from "react";
 
 export default function Main({ children }) {
   const router = useRouter();
-  const user = localStorage.getItem('user');
-  // const [show, setShow] = useState(true);
-
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!user) {
-      router.push('/auth/login')
+
+    if (typeof window !== 'undefined') {
+      const storedUser = localStorage.getItem('user');
+      setUser(storedUser);
+
+      if (!storedUser) {
+        router.push('/auth/login');
+      }
     }
-  }, [user]);
+  }, [router]);
+  // const [show, setShow] = useState(true);
+
 
   return (
 

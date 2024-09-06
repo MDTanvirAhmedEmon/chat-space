@@ -11,7 +11,16 @@ const MobileSideBar = ({setShow, show}) => {
     const [selectedUserId, setSelectedUserId] = useState(null);
     console.log(users)
 
-    const user = JSON.parse(localStorage.getItem("user"));
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
+        }
+    }, []);;
 
     useEffect(() => {
         if (user && user._id) {
@@ -20,7 +29,7 @@ const MobileSideBar = ({setShow, show}) => {
                 .then(data => setUsers(data?.data))
                 .catch(error => console.error('Error fetching users:', error));
         }
-    }, []);
+    }, [user]);
 
     return (
         <div className="">
