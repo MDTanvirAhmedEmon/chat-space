@@ -9,13 +9,13 @@ const DynamicUserItem = ({ params }) => {
     console.log(chatId)
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const [text, setText] = useState();
+    const [text, setText] = useState('');
     const [singleUser, setSingleUser] = useState(null);
     const [allReceivedMessage, setAllReceivedMessage] = useState([]);
     const [realTimeMessage, setRealTimeMessage] = useState([]);
     console.log('from socket', allReceivedMessage)
     // const myId = 11;
-    const socket = io('http://localhost:5000');
+    const socket = io('https://chat-space-simple-server-production.up.railway.app');
     // const socket = useMemo(() =>io('http://localhost:5000'),[]);
 
 
@@ -40,22 +40,26 @@ const DynamicUserItem = ({ params }) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/conversation/${user?._id}/${chatId}`)
+        fetch(`https://chat-space-simple-server-production.up.railway.app/conversation/${user?._id}/${chatId}`)
             .then(res => res.json())
             .then(data => setAllReceivedMessage(data))
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/single-user/${chatId}`)
+        fetch(`https://chat-space-simple-server-production.up.railway.app/single-user/${chatId}`)
             .then(res => res.json())
             .then(data => setSingleUser(data?.data))
     }, [])
 
 
     const sendMessage = () => {
-        const myMessage = { senderId: user?._id, receiverId: chatId, text }
-        console.log(myMessage)
-        socket.emit('sendMessage', myMessage)
+        if (text !== '') {
+            const myMessage = { senderId: user?._id, receiverId: chatId, text }
+            console.log(myMessage)
+            socket.emit('sendMessage', myMessage)
+            setText('')
+        }
+
     }
 
     return (
@@ -89,7 +93,7 @@ const DynamicUserItem = ({ params }) => {
 
             <div className="absolute bottom-5 flex w-full justify-center md:mb-4">
 
-                <input onChange={(e) => setText(e.target.value)} className=" border shadow-lg active:shadow-lg focus:shadow-lg active:ring-none px-4 rounded-xl w-[250px] md:w-[300px] lg:w-[500px] xl:w-[700px]" size="large" placeholder="Type Message Here..." />
+                <input value={text} onChange={(e) => setText(e.target.value)} className=" border shadow-lg active:shadow-lg focus:shadow-lg active:ring-none px-4 rounded-xl w-[250px] md:w-[300px] lg:w-[500px] xl:w-[700px]" size="large" placeholder="Type Message Here..." />
                 <IoIosSend onClick={sendMessage} className=" w-12 h-12 text-primary cursor-pointer" />
             </div>
         </div>

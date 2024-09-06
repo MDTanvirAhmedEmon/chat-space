@@ -15,7 +15,7 @@ const MobileSideBar = ({setShow, show}) => {
 
     useEffect(() => {
         if (user && user._id) {
-            fetch(`http://localhost:5000/users/${user._id}`)
+            fetch(`https://chat-space-simple-server-production.up.railway.app/users/${user._id}`)
                 .then(res => res.json())
                 .then(data => setUsers(data?.data))
                 .catch(error => console.error('Error fetching users:', error));
