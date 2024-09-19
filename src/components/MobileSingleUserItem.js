@@ -15,7 +15,7 @@ const MobileSingleUserItem = ({user, isSelected, onClick, setShow, show}) => {
                 <div className={` cursor-pointer shadow-lg px-2 rounded-md ${isSelected? 'bg-primary text-white shadow-2xl': 'bg-white text-black'}  flex gap-2 justify-between items-center py-2 mt-4`}>
 
                     <div className=" flex gap-2 items-center">
-                        <Avatar className="w-14 h-14" src="https://imgcdn.stablediffusionweb.com/2024/5/2/81328692-c85f-4e08-9c01-f8f9f49fb291.jpg" />
+                        <Avatar className="w-14 h-14" src="https://i.pinimg.com/236x/83/d0/2a/83d02a26c786c46d389b4bb8c5557495.jpg" />
                         <div>
                             <p className=" font-bold capitalize">{user?.name}</p>
                             <p className=" text-sm">{user?.lastMessage}</p>

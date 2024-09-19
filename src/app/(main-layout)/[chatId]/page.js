@@ -28,7 +28,7 @@ const DynamicUserItem = ({ params }) => {
 
     useEffect(() => {
         if (user && user._id) {
-            const newSocket = io('https://chat-space-simple-server-production.up.railway.app');
+            const newSocket = io('http://localhost:5000');
             setSocket(newSocket);
 
             newSocket.on("connect", () => {
@@ -49,7 +49,7 @@ const DynamicUserItem = ({ params }) => {
     // Fetch conversation
     useEffect(() => {
         if (user && user._id) {
-            fetch(`https://chat-space-simple-server-production.up.railway.app/conversation/${user._id}/${chatId}`)
+            fetch(`http://localhost:5000/conversation/${user._id}/${chatId}`)
                 .then(res => res.json())
                 .then(data => setAllReceivedMessage(data))
                 .catch(err => console.error('Error fetching conversation:', err));
@@ -58,7 +58,7 @@ const DynamicUserItem = ({ params }) => {
 
     // Fetch the single user data
     useEffect(() => {
-        fetch(`https://chat-space-simple-server-production.up.railway.app/single-user/${chatId}`)
+        fetch(`http://localhost:5000/single-user/${chatId}`)
             .then(res => res.json())
             .then(data => setSingleUser(data?.data))
             .catch(err => console.error('Error fetching user:', err));
@@ -76,7 +76,7 @@ const DynamicUserItem = ({ params }) => {
     return (
         <div className='h-screen relative'>
             <div className="h-16 md:h-[70px] border-b bg-[#24242404] flex items-center pl-3 gap-3">
-                <Avatar size={50} className="w-16 h-16" src="https://imgcdn.stablediffusionweb.com/2024/5/2/81328692-c85f-4e08-9c01-f8f9f49fb291.jpg" />
+                <Avatar size={50} className="w-16 h-16" src="https://i.pinimg.com/236x/83/d0/2a/83d02a26c786c46d389b4bb8c5557495.jpg" />
                 <div>
                     <p className="font-bold capitalize">{singleUser?.name}</p>
                     <p className="text-sm">Last Seen 1h</p>
